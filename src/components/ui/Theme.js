@@ -9,4 +9,5 @@ export default createMuiTheme({
     primary: { main: arcBlue },
     secondary: { main: arcOrange },
   },
+  typography:{h3:{fontWeight: 300}}
 });
