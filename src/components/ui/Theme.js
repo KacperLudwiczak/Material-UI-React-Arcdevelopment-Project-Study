@@ -9,5 +9,12 @@ export default createMuiTheme({
     primary: { main: arcBlue },
     secondary: { main: arcOrange },
   },
-  typography:{h3:{fontWeight: 300}}
+  typography: {
+    tab: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: 700,
+      fontSize: "1rem",
+    },
+  },
 });
