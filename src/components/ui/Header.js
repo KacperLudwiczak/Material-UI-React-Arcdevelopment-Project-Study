@@ -41,6 +41,16 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "25px",
     height: "45px",
   },
+  menu: {
+    backgroundColor: theme.palette.common.blue,
+    color: "white",
+    borderRadius: "15px",
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    "&:hover": { opacity: 1 },
+  },
 }));
 
 export default function Header(props) {
@@ -48,6 +58,7 @@ export default function Header(props) {
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handlerChange = (event, value) => {
     setValue(value);
@@ -78,6 +89,19 @@ export default function Header(props) {
       setValue(5);
     }
   }, [value]);
+
+  const handleMenuItemClick = (event, index) => {
+    setAnchorEl(null);
+    setOpen(false);
+    setSelectedIndex(index);
+  };
+
+  const menuOptions = [
+    { name: "Services", link: "/services" },
+    { name: "Custom Software Development", link: "/customsoftware" },
+    { name: " Mobile App Development", link: "/mobileapps" },
+    { name: " Website Development", link: "/websites" },
+  ];
 
   return (
     <>
@@ -150,47 +174,25 @@ export default function Header(props) {
               open={open}
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
+              classes={{ paper: classes.menu }}
+              elevation={0}
             >
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(1);
-                }}
-                component={Link}
-                to="/services"
-              >
-                Services
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(1);
-                }}
-                component={Link}
-                to="/customsoftware"
-              >
-                Custom Software Development
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(1);
-                }}
-                component={Link}
-                to="/mobileapps"
-              >
-                Mobile App Development
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(1);
-                }}
-                component={Link}
-                to="/websites"
-              >
-                Website Development
-              </MenuItem>
+              {menuOptions.map((option, index) => (
+                <MenuItem
+                  key={option}
+                  component={Link}
+                  to={option.link}
+                  classes={{ root: classes.menuItem }}
+                  onClick={(event) => {
+                    handleMenuItemClick(event, index);
+                    setValue(1);
+                    handleClose();
+                  }}
+                  selected={index === selectedIndex && value === 1}
+                >
+                  {option.name}
+                </MenuItem>
+              ))}
             </Menu>
           </Toolbar>
         </AppBar>
