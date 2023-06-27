@@ -5,11 +5,13 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "./ui/Theme";
 import Home from "./Home";
 import Services from "./Services";
-import Customofware from "./Customofware";
+import Customsoftware from "./Customsoftware";
 import Revolution from "./Revolution";
 import Contact from "./Contact";
 import About from "./About";
 import Estimate from "./Estimate";
+import MobileApps from "./MobileApps";
+import WebsiteDevelopment from "./WebsiteDevelopment";
 
 function App() {
   return (
@@ -23,9 +25,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/estimate" element={<Estimate />} />
-          <Route path="/customofware" element={<Customofware />} />{" "}
-          {/* <Route path="/mobileapps" element={} /> */}
-          {/* <Route path="/websites" element={} /> */}
+          <Route path="/customsoftware" element={<Customsoftware />} />
+          <Route path="/mobileapps" element={<MobileApps />} />
+          <Route path="/websites" element={<WebsiteDevelopment />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
